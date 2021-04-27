@@ -1,0 +1,67 @@
+#wrapper {
+  background-image: url("../images/background.jpg");
+}
+header,
+body {
+  background-color: #002266;
+}
+#btn-search {
+  background-color: white;
+  color: blue;
+}
+#btn-search:hover {
+  background-color: blue;
+  color: white;
+}
+.search-history {
+  width: 300px;
+}
+.city {
+  padding: 2px;
+}
+#city:focus {
+  background-color: yellow;
+}
+.card {
+  background-color: #d8d1d1;
+}
+.label {
+  font-weight: bold;
+  background-color: white;
+  padding: 0px 3px;
+}
+.uv {
+  margin-left: 0px;
+}
+.main-card {
+  height: 300px;
+}
+.main-card-body,
+.card-body {
+  line-height: 1em;
+}
+/* Colors for UV index */
+.low {
+  background-color: lightgreen;
+  padding: 0px 3px;
+}
+.moderate {
+  background-color: yellow;
+  padding: 0px 3px;
+}
+.high {
+  background-color: orange;
+  padding: 0px 3px;
+  color: white;
+}
+.very-high {
+  background-color: red;
+  padding: 0px 3px;
+  color: white;
+}
+.extreme {
+  background-color: purple;
+  padding: 0px 3px;
+  color: white;
+}
+/* End of Colors for UV index */

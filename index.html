@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+    <title>Weather Dashboard</title>
+  </head>
+  <body>
+    <header class="text-center pt-2 pb-2 text-white">
+      <h1>Weather Dashboard</h1>
+    </header>
+    <div
+      id="wrapper"
+      class="container-fluid d-flex align-items-stretch bg-light"
+    >
+      <aside id="sidebar align-items-center">
+        <h4 class="pt-4 text-light">Search for a City:</h4>
+
+        <div class="dropdown">
+          <button
+            class="btn btn-secondary dropdown-toggle mb-2 bg-light text-primary"
+            type="button"
+            id="btn-state"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Select State (Required)
+          </button>
+          <ul
+            id="state"
+            class="dropdown-menu"
+            aria-labelledby="dropdownMenuButton1"
+          >
+            <!-- Load states from Js file. -->
+          </ul>
+        </div>
+
+        <div class="input-group mb-3 me-3">
+          <input
+            type="text"
+            class="form-control"
+            aria-label="Recipient's username"
+            aria-describedby="button-addon2"
+            id="city"
+          />
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            id="btn-search"
+          >
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+
+        <ul class="search-history">
+          <li class="list-group-item">An item</li>
+          <li class="list-group-item">A second item</li>
+          <li class="list-group-item">A third item</li>
+          <li class="list-group-item">A fourth item</li>
+          <li class="list-group-item">And a fifth one</li>
+        </ul>
+      </aside>
+
+      <article id="main-content row">
+        <section class="row main-card ms-5 mt-3">
+          <div class="card current-card" style="width: 39rem">
+            <div class="city" style="width: 38rem">
+              <h2 class="search-city">City Searched ()</h2>
+            </div>
+            <div class="card-body main-card-body">
+              <!-- Add current weather data from js for city searched -->
+              <p></p>
+              <p></p>
+              <p></p>
+              <p></p>
+              <p></p>
+              <p></p>
+            </div>
+          </div>
+          <div class="uv">
+            <p class="uvscale mt-2">
+              <span class="label">UV Index Scale:</span>
+              <span class="low"> 0-2 LOW </span>
+              <span class="moderate"> 3-5 MODERATE </span>
+              <span class="high"> 6-7 HIGH </span>
+              <span class="very-high"> 8-10 VERY HIGH </span>
+              <span class="extreme"> >11 EXTREME </span>
+            </p>
+          </div>
+        </section>
+        <!-- Individual 5-day forcast weather cards  -->
+        <section class="row weather-cards ms-5 mb-5">
+          <h3 class="mt-5">5-Day Forecast:</h3>
+          <div id="card1" class="card me-2 my-1" style="width: 12rem">
+            <div class="card-body">
+              <h5 class="card-title">4/25/2021</h5>
+              <p></p>
+              <p></p>
+              <p></p>
+            </div>
+          </div>
+          <div id="card2" class="card me-2 my-1" style="width: 12rem">
+            <div class="card-body">
+              <h5 class="card-title">4/26/2021</h5>
+              <p></p>
+              <p></p>
+              <p></p>
+            </div>
+          </div>
+          <div id="card3" class="card me-2 my-1" style="width: 12rem">
+            <div class="card-body">
+              <h5 class="card-title">4/27/2021</h5>
+              <p></p>
+              <p></p>
+              <p></p>
+            </div>
+          </div>
+          <div id="card4" class="card me-2 my-1" style="width: 12rem">
+            <div class="card-body">
+              <h5 class="card-title">4/28/2021</h5>
+              <p></p>
+              <p></p>
+              <p></p>
+            </div>
+          </div>
+          <div id="card5" class="card me-2 my-1" style="width: 12rem">
+            <div class="card-body">
+              <h5 class="card-title">4/29/2021</h5>
+              <p></p>
+              <p></p>
+              <p></p>
+            </div>
+          </div>
+        </section>
+      </article>
+    </div>
+    <!-- Container Div closing tag -->
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./assets/js/scripts.js"></script>
+  </body>
+</html>
