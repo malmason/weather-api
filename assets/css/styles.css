@@ -73,3 +73,8 @@ li:hover {
   color: white;
 }
 /* End of Colors for UV index */
+.table {
+  width: 30%;
+  background-color: lightgray;
+  border-radius: 3px;
+}

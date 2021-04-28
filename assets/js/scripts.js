@@ -10,7 +10,7 @@ var btnSearch = document.querySelector("#btn-search")
 var searchCity = document.querySelector(".search-city");
 var mainCardBody = document.querySelector(".main-card-body");
 var stateList = document.querySelector("#state");
-// var btnState = document.querySelector("#btn-state");
+var temps = document.querySelector(".temps");
 
 var searchKey = "";
 var stateName = "";
@@ -44,13 +44,15 @@ function getWeather(requestUrl) {
       var newP = mainCardBody.children;
       var child = newP[i];
       var newSpan = ""
+      var fixedNum = ""
       switch(i) {
         case 0:
           child.textContent = data.current.weather[0].main;
           child.classList.add("card-text");
           break;
         case 1:
-          child.textContent = "Temperature: " + data.current.temp + "\xB0" +"F";
+          fixedNum = data.current.temp
+          child.textContent = "Temperature: " + fixedNum.toFixed(1) + "\xB0" +"F";
           child.classList.add("card-text");
           break;
         case 2:
@@ -81,19 +83,27 @@ function getWeather(requestUrl) {
           }
           break;
         case 5:
-          child.textContent = "Feels Like: " + data.current.feels_like + "\xB0" +"F";
+          fixedNum = data.current.feels_like
+          child.textContent = "Feels Like: " + fixedNum.toFixed(1) + "\xB0" +"F";
           child.classList.add("card-text");
           break;
       }
     } 
 
-        console.log(data.daily[0].temp.day) // eve, morn, night
-        console.log(data.daily[0].humidity)
-        console.log(data.daily[0].feels_like.day) // eve, morn, night
-        console.log(data.daily[0].weather[0].description)
-        console.log(data.daily[0].weather[0].icon)
-        console.log(data.daily[0].weather[0].main)
-        console.log(data);
+    fixedNum = data.daily[0].temp.morn
+    temps.children[0].textContent = fixedNum.toFixed(1) + "\xB0";
+    
+    fixedNum = data.daily[0].temp.eve
+    temps.children[1].textContent = fixedNum.toFixed(1) + "\xB0";
+
+    fixedNum = data.daily[0].temp.night
+    temps.children[2].textContent = fixedNum.toFixed(1) + "\xB0";
+
+    fixedNum = data.daily[0].temp.min
+    temps.children[3].textContent = fixedNum.toFixed(1) + "\xB0";
+
+    fixedNum = data.daily[0].temp.max
+    temps.children[4].textContent = fixedNum.toFixed(1) + "\xB0";
 
     // Populate the 5-day forecast cards
     for(i=1; i<=5; i++) {
@@ -108,7 +118,8 @@ function getWeather(requestUrl) {
       child.appendChild(newImage); // Add the weather icon to the h5 tag. 
 
       child = children[0].children[1]; // The 1st paragraph in the card.
-      child.textContent = "Temp: " + data.daily[i].temp.day + "\xB0" +"F";
+      fixedNum = data.daily[i].temp.day
+      child.textContent = "Temp: " + fixedNum.toFixed(1) + "\xB0" +"F";
       child = children[0].children[2]; // The 2nd paragraph in the card.
       child.textContent = "Humidity : " + data.daily[i].humidity + "%";
       child = children[0].children[3]; // The 3rd paragraph in the card.
