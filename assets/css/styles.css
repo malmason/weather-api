@@ -40,6 +40,14 @@ body {
 .card-body {
   line-height: 1em;
 }
+#card1 {
+  height: 225px;
+}
+li:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+  background-color: lightgrey;
+}
 /* Colors for UV index */
 .low {
   background-color: lightgreen;

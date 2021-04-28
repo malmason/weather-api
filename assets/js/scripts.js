@@ -2,13 +2,15 @@ var geoCoding = "http://api.openweathermap.org/geo/1.0/direct?q="
 var weatherApi = "https://api.openweathermap.org/data/2.5/onecall?lat=" 
 var iconUrl = "http://openweathermap.org/img/wn/"
 var appId = "bfb48c635c611d189b7dc9d06f07dc20";
+
+var stateSelect = document.getElementById("state-select")
 var cityName = document.querySelector("#city");
 var searchHistory = document.querySelector(".search-history");
 var btnSearch = document.querySelector("#btn-search")
 var searchCity = document.querySelector(".search-city");
 var mainCardBody = document.querySelector(".main-card-body");
 var stateList = document.querySelector("#state");
-var btnState = document.querySelector("#btn-state");
+// var btnState = document.querySelector("#btn-state");
 
 var searchKey = "";
 var stateName = "";
@@ -16,20 +18,17 @@ var states = [ 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM',
 
 function loadStates() {
   for(i=0; i < states.length; ++i) {
-    var l = document.createElement("li");
-    var a = document.createElement("a");
-    a.classList.add("dropdown-item");
-    a.setAttribute("href","#");
-    a.setAttribute("data-value",states[i]);
-    a.textContent = states[i];
-    l.appendChild(a);
-    stateList.appendChild(l);
+    var l = document.createElement("option");
+    l.setAttribute("value",states[i]);
+    l.textContent = states[i];
+    stateSelect.appendChild(l);
   }
 }
 
 loadStates();
 
 function getWeather(requestUrl) {
+  // Pulls the 7-day forecast for the requestUrl and populates the dashboard
   var newI = document.createElement('img')
   fetch(requestUrl)
       .then(function (response) {return response.json()})
@@ -118,11 +117,14 @@ function getWeather(requestUrl) {
     }
 
   })
+  // Save the search criteria to the history. 
+  saveSearch();
 }
 
 function getCoord(city) {
+  // Take the city and state name get the coordinates and pass them to the getWeather function. 
   cityURL = geoCoding + city + "," + stateName + ",US&limit=1&appid=" + appId;
-  console.log(cityURL);
+ 
   fetch(cityURL)
       .then(function (response) {return response.json()})
       .then(function(data){
@@ -132,22 +134,85 @@ function getCoord(city) {
       })
 }
 
-
 function getResults() {
+  // Check that a city and state have been entered, call the function to get the Longitude and Latitude coordinates. 
   if(cityName.value =="") {
 
     cityName.focus();
   } else {
+    stateName = stateSelect.value;
     getCoord(cityName.value);
   }
   
 }
 
-btnSearch.addEventListener("click", getResults)
-stateList.addEventListener("click", function(e) {
-  console.log(e.target)
+function saveSearch(){
+  var currentSearch = {
+    city: cityName.value,
+    state: stateName
+  }
 
-  stateName = e.target.dataset.value; 
-  btnState.textContent = "Selected State: " + stateName;
+  var a = [] // Local storage array. 
+  a = JSON.parse(localStorage.getItem("searchHistory")) || [];
+  console.log(a);
+
+  // See if the item exists in the array already before adding it again. 
+  if(a !== null) {
+    let item = a.find(a => a.city === cityName.value && a.state === stateName);
+    if(!item) {
+      a.push(currentSearch); 
+      localStorage.setItem("searchHistory", JSON.stringify(a));
+    }
+  }
+  getSearchHistory();
+}
+
+function getSearchHistory() {
+  var history = JSON.parse(localStorage.getItem("searchHistory")) || [];
+  if(history !== null) {
+
+    // Remove the child elements first, then add them from the history. 
+    while(searchHistory.lastChild) {
+      searchHistory.removeChild(searchHistory.lastChild);
+    }
+    // Sort the array before displaying the history. 
+    history.sort(sortArray("city"));
+    for(i=0; i < history.length; ++i) {
+      var li = document.createElement("li");
+      li.classList.add("list-group-item");
+      li.textContent = history[i].city + "," + history[i].state;
+      searchHistory.appendChild(li);
+    }
+  }
+}
+
+function sortArray(column) {
+  return function(a,b) {
+    if (a[column] > b[column]) {
+      return 1;
+    } else if (a[column] < b[column]) {
+      return -1;
+    }
+    return 0;
+  }
+}
+
+// Load the searchHistory once the page has finished loading. 
+getSearchHistory();
+
+btnSearch.addEventListener("click", getResults)
+
+searchHistory.addEventListener("click", function(e) {
+  // Split the string on the button link and call the getCoord function
+  var results = e.target.textContent;
+  var str = results.split(",");
+  cityName.value = str[0];
+  stateName = str[1];
+  getCoord(cityName.value);
+})
+stateSelect.addEventListener("change", function(){
+  cityName.value = "";
+  cityName.focus();
+  stateName = stateSelect.value;
 })
 

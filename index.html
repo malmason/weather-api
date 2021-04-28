@@ -34,26 +34,17 @@
       class="container-fluid d-flex align-items-stretch bg-light"
     >
       <aside id="sidebar align-items-center">
-        <h4 class="pt-4 text-light">Search for a City:</h4>
+        <select
+          id="state-select"
+          class="form-select mt-3"
+          aria-label="Default select example"
+          size="1"
+        >
+          <option selected>Select State (Required)</option>
+        </select>
 
-        <div class="dropdown">
-          <button
-            class="btn btn-secondary dropdown-toggle mb-2 bg-light text-primary"
-            type="button"
-            id="btn-state"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Select State (Required)
-          </button>
-          <ul
-            id="state"
-            class="dropdown-menu"
-            aria-labelledby="dropdownMenuButton1"
-          >
-            <!-- Load states from Js file. -->
-          </ul>
-        </div>
+
+        <h4 class="pt-1 text-light">Search for a City:</h4>
 
         <div class="input-group mb-3 me-3">
           <input
@@ -73,11 +64,7 @@
         </div>
 
         <ul class="search-history">
-          <li class="list-group-item">An item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-          <li class="list-group-item">A fourth item</li>
-          <li class="list-group-item">And a fifth one</li>
+          <!-- Load from local storage with js -->
         </ul>
       </aside>
 
@@ -113,7 +100,7 @@
           <h3 class="mt-5">5-Day Forecast:</h3>
           <div id="card1" class="card me-2 my-1" style="width: 12rem">
             <div class="card-body">
-              <h5 class="card-title">4/25/2021</h5>
+              <h5 class="card-title"></h5>
               <p></p>
               <p></p>
               <p></p>
@@ -121,7 +108,7 @@
           </div>
           <div id="card2" class="card me-2 my-1" style="width: 12rem">
             <div class="card-body">
-              <h5 class="card-title">4/26/2021</h5>
+              <h5 class="card-title"></h5>
               <p></p>
               <p></p>
               <p></p>
@@ -129,7 +116,7 @@
           </div>
           <div id="card3" class="card me-2 my-1" style="width: 12rem">
             <div class="card-body">
-              <h5 class="card-title">4/27/2021</h5>
+              <h5 class="card-title"></h5>
               <p></p>
               <p></p>
               <p></p>
@@ -137,7 +124,7 @@
           </div>
           <div id="card4" class="card me-2 my-1" style="width: 12rem">
             <div class="card-body">
-              <h5 class="card-title">4/28/2021</h5>
+              <h5 class="card-title"></h5>
               <p></p>
               <p></p>
               <p></p>
@@ -145,7 +132,7 @@
           </div>
           <div id="card5" class="card me-2 my-1" style="width: 12rem">
             <div class="card-body">
-              <h5 class="card-title">4/29/2021</h5>
+              <h5 class="card-title"></h5>
               <p></p>
               <p></p>
               <p></p>
