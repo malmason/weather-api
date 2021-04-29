@@ -34,7 +34,7 @@ function getWeather(requestUrl) {
       .then(function (response) {return response.json()})
       .then(function(data){
         
-        searchCity.textContent =cityName.value + "," + stateName + " (" + moment.unix(data.current.dt).format("MM/DD/YYYY") + ") ";
+        searchCity.textContent =cityName.value + "," + stateName + " (" + moment.unix(data.current.dt).format("ddd") + " " + moment.unix(data.current.dt).format("MM/DD/YY") + ") ";
         // Add the weather icon to the main card. 
         newI.src= iconUrl + data.current.weather[0].icon +".png"
         searchCity.appendChild(newI);
@@ -113,7 +113,7 @@ function getWeather(requestUrl) {
       var newImage = document.createElement("img");
 
       child = children[0].children[0]; // The header tag in the card.
-      child.textContent = moment.unix(data.daily[i].dt).format("MM/DD/YYYY");
+      child.textContent = moment.unix(data.daily[i].dt).format("ddd") + " " + moment.unix(data.daily[i].dt).format("MM/DD/YY");
       newImage.src= iconUrl + data.daily[i].weather[0].icon +".png"
       child.appendChild(newImage); // Add the weather icon to the h5 tag. 
 
