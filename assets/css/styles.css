@@ -78,3 +78,8 @@ li:hover {
   background-color: lightgray;
   border-radius: 3px;
 }
+.weather-desc {
+  font-weight: bold;
+  color: rgb(182, 36, 36);
+  font-size: 1em;
+}
