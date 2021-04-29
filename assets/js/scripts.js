@@ -1,6 +1,6 @@
-var geoCoding = "http://api.openweathermap.org/geo/1.0/direct?q="
+var geoCoding = "https://api.openweathermap.org/geo/1.0/direct?q="
 var weatherApi = "https://api.openweathermap.org/data/2.5/onecall?lat=" 
-var iconUrl = "http://openweathermap.org/img/wn/"
+var iconUrl = "https://openweathermap.org/img/wn/"
 var appId = "bfb48c635c611d189b7dc9d06f07dc20";
 
 var stateSelect = document.getElementById("state-select")
