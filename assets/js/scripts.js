@@ -14,7 +14,7 @@ var temps = document.querySelector(".temps");
 
 var searchKey = "";
 var stateName = "";
-var states = [ 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY' ];
+var states = [ 'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC',  'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY' ];
 
 function loadStates() {
   for(i=0; i < states.length; ++i) {
@@ -212,7 +212,11 @@ function sortArray(column) {
 getSearchHistory();
 
 btnSearch.addEventListener("click", getResults)
-
+document.addEventListener("keyup", function(e){
+  if(e.code === "Enter") {
+    getResults();
+  }
+})
 searchHistory.addEventListener("click", function(e) {
   // Split the string on the button link and call the getCoord function
   var results = e.target.textContent;
@@ -226,4 +230,5 @@ stateSelect.addEventListener("change", function(){
   cityName.focus();
   stateName = stateSelect.value;
 })
+
 
